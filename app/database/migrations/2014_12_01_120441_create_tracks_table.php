@@ -15,6 +15,12 @@ class CreateTracksTable extends Migration {
 		Schema::create('tracks', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('name', 30);
+			$table->integer('album_id')->unsigned();
+			$table->integer('artist_id')->unsigned();
+
+			$table->foreign('album_id')->references('id')->on('albums');
+			$table->foreign('artist_id')->references('id')->on('artists');
 			$table->timestamps();
 		});
 	}

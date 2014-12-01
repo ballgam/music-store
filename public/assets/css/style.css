@@ -1,0 +1,50 @@
+.btn-circle {
+  border-radius: 25px !important;
+}
+
+.green-haze.btn {
+  color: white;
+  background-color: #44b6ae;
+  border-color: "";
+}
+.green-haze.btn:hover, .green-haze.btn:focus, .green-haze.btn:active, .green-haze.btn.active {
+  color: white;
+  background-color: #399892;
+}
+.open .green-haze.btn.dropdown-toggle {
+  color: white;
+  background-color: #399892;
+}
+.green-haze.btn:active, .green-haze.btn.active {
+  background-image: none;
+}
+.open .green-haze.btn.dropdown-toggle {
+  background-image: none;
+}
+.green-haze.btn.disabled, .green-haze.btn.disabled:hover, .green-haze.btn.disabled:focus, .green-haze.btn.disabled:active, .green-haze.btn.disabled.active, .green-haze.btn[disabled], .green-haze.btn[disabled]:hover, .green-haze.btn[disabled]:focus, .green-haze.btn[disabled]:active, .green-haze.btn[disabled].active, fieldset[disabled] .green-haze.btn, fieldset[disabled] .green-haze.btn:hover, fieldset[disabled] .green-haze.btn:focus, fieldset[disabled] .green-haze.btn:active, fieldset[disabled] .green-haze.btn.active {
+  background-color: #44b6ae;
+}
+.green-haze.btn .badge {
+  color: #44b6ae;
+  background-color: white;
+}
+
+
+.action-buttons{
+  font-size:10px;
+}
+
+.action-buttons > .view{
+  color:#EDEDED;
+}
+.action-buttons > i.action-icon{
+  color:#787171 !important;
+}
+
+.action-buttons > .delete{
+  color:#f3565d;
+}
+
+.action-buttons > .edit{
+  color:#89c4f4;
+}
