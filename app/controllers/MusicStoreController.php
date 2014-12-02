@@ -9,6 +9,30 @@ class MusicStoreController extends \BaseController {
 		return View::make('music.artist-index', compact('artists'));
 	}
 
+	public function albums_index()
+	{
+		$albums =	$this->api_get_albums();
+		
+		/*$albums = json_decode($albums);*/
+		//var_dump(DB::getQueryLog());die();
+
+		return View::make('music.albums-all-index', compact('albums'));
+	}
+
+	public function albums_search()
+	{
+		$search = Input::get('search', '');
+
+		return Redirect::route('music-albums-all', array('search' => $search));
+	}
+
+	public function tracks_index()
+	{
+		$tracks = $this->api_get_tracks();
+
+		return $albums;
+	}
+
 	public function artist_store()
 	{
 		//die('artist store');
@@ -76,7 +100,7 @@ class MusicStoreController extends \BaseController {
 		}
 	}
 
-	public function album_index($artist_id)
+	public function artist_album_index($artist_id)
 	{
 		$artist = Artist::find($artist_id);
 		if($artist)
@@ -92,7 +116,7 @@ class MusicStoreController extends \BaseController {
 		}
 	}
 
-	public function track_index($artist_id, $album_id)
+	public function album_track_index($artist_id, $album_id)
 	{
 		$album = Album::find($album_id);
 		//var_dump(DB::getQueryLog());die();
@@ -304,19 +328,60 @@ class MusicStoreController extends \BaseController {
 	}
 
 
-	public function api_get_albums()
+	public function api_get_artists()
 	{
+		Paginator::setPageName('page');
+		$artists = Artist::where('active', '=', 1)->paginate(PAGE_SIZE);
 
+		return $artists;
 	}
 
 	public function api_get_albums()
 	{
 
+		Paginator::setPageName('page');
+
+		$albums = Album::join('artists', 'artists.id', '=', 'albums.artist_id')
+		->select(array(
+			'albums.id',
+			'albums.name as album_name',
+			'artists.name as artist_name'));
+
+		$search = Input::get('search');
+		if(isset($search))
+		{
+			$albums = $albums->where('albums.name', 'like', '%' . $search . '%')
+			->orWhere('artists.name', 'like', '%' . $search . '%');
+		}
+
+		$albums = $albums->paginate(PAGE_SIZE);
+		return $albums;
 	}
 
 	public function api_get_tracks()
 	{
 
+		Paginator::setPageName('page');
+		$tracks = Track::join('albums', 'albums.id', '=', 'tracks.album_id')
+		->join('artists', 'artists.id', '=', 'albums.artist_id')
+		->select(array(
+			'tracks.id',
+			'albums.name as album_name',
+			'tracks.name as track_name',
+			'artists.name as artist_name'));
+
+		$search = Input::get('search');
+		if(isset($search))
+		{
+			$tracks = $tracks->where('tracks.name', 'like', '%' . $search . '%')
+			->orWhere('albums.name', 'like', '%' . $search . '%')
+			->orWhere('artists.name', 'like', '%' . $search . '%');
+		}
+
+		$tracks = $tracks->paginate(PAGE_SIZE);
+
+		var_dump(DB::getQueryLog());die();
+		return $tracks;
 	}
 	
 	public function api_get_artist_by_id($artist_id)

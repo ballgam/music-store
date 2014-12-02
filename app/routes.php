@@ -11,68 +11,78 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', array(
+	'as'	=>	'home',
+	'uses'	=>	'MusicStoreController@artist_index'
+	));
 
 Route::group(array('prefix' => 'music'), function(){
 
 	Route::get('artists', array(
-			'as'	=>	'music-artist',
-			'uses'	=>	'MusicStoreController@artist_index'
-			));
+		'as'	=>	'music-artist',
+		'uses'	=>	'MusicStoreController@artist_index'
+		));
 
 	Route::get('artists', array(
-			'as'	=>	'music-artist',
-			'uses'	=>	'MusicStoreController@artist_index'
-			));
+		'as'	=>	'music-artist',
+		'uses'	=>	'MusicStoreController@artist_index'
+		));
+
+	Route::get('albums', array(
+		'as'	=>	'music-albums-all',
+		'uses'	=>	'MusicStoreController@albums_index'
+		));
+
+	Route::get('tracks', array(
+		'as'	=>	'music-tracks-all',
+		'uses'	=>	'MusicStoreController@tracks_index'
+		));
 
 	Route::get('artists/{artist_id}/albums', array(
-			'as'	=>	'music-albums',
-			'uses'	=>	'MusicStoreController@album_index'
-			));
+		'as'	=>	'music-albums',
+		'uses'	=>	'MusicStoreController@artist_album_index'
+		));
 
 	Route::get('artists/{artist_id}/albums/{album_id}/tracks', array(
-			'as'	=>	'music-tracks',
-			'uses'	=>	'MusicStoreController@track_index'
-			));
+		'as'	=>	'music-tracks',
+		'uses'	=>	'MusicStoreController@album_track_index'
+		));
 
 
 	Route::get('api/artists', array(
-			'as'	=>	'api-artists',
-			'uses'	=>	'MusicStoreController@api_get_artists'
-			));
-
-	Route::get('api/artists', array(
-			'as'	=>	'api-artists',
-			'uses'	=>	'MusicStoreController@api_get_artists'
-			));
+		'as'	=>	'api-artists',
+		'uses'	=>	'MusicStoreController@api_get_artists'
+		));
 
 	Route::get('api/albums', array(
-			'as'	=>	'api-albums',
-			'uses'	=>	'MusicStoreController@api_get_albums'
-			));
+		'as'	=>	'api-albums',
+		'uses'	=>	'MusicStoreController@api_get_albums'
+		));
 
 	Route::get('api/tracks', array(
-			'as'	=>	'api-tracks',
-			'uses'	=>	'MusicStoreController@api_get_tracks'
-			));
+		'as'	=>	'api-tracks',
+		'uses'	=>	'MusicStoreController@api_get_tracks'
+		));
 
 	Route::get('api/albums/get/{album_id}', array(
-			'as'	=>	'api-tracks',
-			'uses'	=>	'MusicStoreController@api_get_tracks'
-			));
+		'as'	=>	'api-tracks',
+		'uses'	=>	'MusicStoreController@api_get_tracks'
+		));
 
 	Route::get('api/tracks/get/{track_id}', array(
-			'as'	=>	'api-track-by-id',
-			'uses'	=>	'MusicStoreController@api_get_track_by_id'
-			));
+		'as'	=>	'api-track-by-id',
+		'uses'	=>	'MusicStoreController@api_get_track_by_id'
+		));
 
 	Route::group(array('before' => 'csrf'), function(){
 		Route::post('artists', array(
 			'as'	=>	'music-artist',
 			'uses'	=>	'MusicStoreController@artist_store'
+			));
+
+		Route::post('albums', array(
+			'as'	=>	'music-albums-all',
+			'uses'	=>	'MusicStoreController@albums_search'
 			));
 
 		Route::post('artists/{artist_id}', array(

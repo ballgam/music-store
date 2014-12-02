@@ -22,10 +22,12 @@
 
         <nav class="navbar navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ URL::route('music-artist') }}">Music Store</a>
+                <a class="navbar-brand" href="{{ URL::route('home') }}">Music Store</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="{{ URL::route('music-artist') }}">View All Artists</a></li>
+                <li><a href="{{ URL::route('music-albums-all') }}">All Albums</a></li>
+                <li><a href="{{ URL::route('music-tracks-all') }}">All Tracks</a></li>
                 </ul>
             </nav>
 
