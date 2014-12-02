@@ -114,9 +114,15 @@ Route::group(array('before' => 'auth'), function(){
 			'uses'	=>	'MusicStoreController@api_get_tracks'
 			));
 
+
+		Route::get('api/artists/get/{artist_id}', array(
+			'as'	=>	'api-tracks',
+			'uses'	=>	'MusicStoreController@api_get_artist_by_id'
+			));
+		
 		Route::get('api/albums/get/{album_id}', array(
 			'as'	=>	'api-tracks',
-			'uses'	=>	'MusicStoreController@api_get_tracks'
+			'uses'	=>	'MusicStoreController@api_get_album_by_id'
 			));
 
 		Route::get('api/tracks/get/{track_id}', array(

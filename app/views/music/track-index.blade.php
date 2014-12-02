@@ -32,7 +32,7 @@
                 {{ Form::open(['id' => 'frmPos' . $track->id, 'url' => '/music/artists/'. $artist_id . '/albums/' . $album_id . '/tracks/delete/' . $track->id, 'method' => 'POST']) }}
 
                 <div class="action-buttons">
-                    <a href="#" class="edit" title="Edit Track" album-id="{{ $track->id }}" > 
+                    <a href="#" class="edit" title="Edit Track" track-id="{{ $track->id }}" > 
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
