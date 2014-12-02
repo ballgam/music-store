@@ -22,10 +22,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '104.236.15.227',
+			'host'      => 'localhost',
 			'database'  => 'music_store',
 			'username'  => 'root',
-			'password'  => 'PSV.Pass?1',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
