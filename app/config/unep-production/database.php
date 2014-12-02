@@ -6,7 +6,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '104.236.15.227',
+			'host'      => '127.0.0.1',
 			'database'  => 'music_store',
 			'username'  => 'root',
 			'password'  => 'PSV.Pass?1',
