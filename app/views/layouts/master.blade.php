@@ -29,6 +29,23 @@
                 <li><a href="{{ URL::route('music-albums-all') }}">All Albums</a></li>
                 <li><a href="{{ URL::route('music-tracks-all') }}">All Tracks</a></li>
                 </ul>
+
+                <div class="pull-right">
+                    <ul class="nav navbar-nav">
+                        <li>
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span class="badge bg-important">Welcome {{ Auth::user()->username }}</span>
+                        </a> 
+                    </li>
+                    <li>
+                        <a href="{{ URL::route('account-logout') }}" title="Log out">
+                            <i class="fa fa-power-off fa-2"></i>
+                            <span>Log Out</span>
+                        </a> 
+                    </li>
+                </ul>
+                </div>
             </nav>
 
             <h1> @yield('body-title')</h1>

@@ -30,7 +30,15 @@ class MusicStoreController extends \BaseController {
 	{
 		$tracks = $this->api_get_tracks();
 
-		return $albums;
+
+		return View::make('music.tracks-all-index', compact('tracks'));
+	}
+
+	public function tracks_search()
+	{
+		$search = Input::get('search', '');
+
+		return Redirect::route('music-tracks-all', array('search' => $search));
 	}
 
 	public function artist_store()
@@ -380,7 +388,7 @@ class MusicStoreController extends \BaseController {
 
 		$tracks = $tracks->paginate(PAGE_SIZE);
 
-		var_dump(DB::getQueryLog());die();
+		//var_dump(DB::getQueryLog());die();
 		return $tracks;
 	}
 	
