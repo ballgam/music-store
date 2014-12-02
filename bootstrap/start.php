@@ -33,7 +33,7 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
 
 	'unep-development' 	=> array('TE', 'TE-PC','KDC-DTP-021'),
-	'unep-production'	=> array('*.com', '*.co.ke','104.236.15.227'),
+	'unep-production'	=> array('*.com', '*.co.ke','104.236.15.227', 'Psv-vm'),
 ));
 
 /*
